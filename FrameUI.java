@@ -1,3 +1,5 @@
+import java.awt.Dimension;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
@@ -12,7 +14,9 @@ public class FrameUI extends JFrame{
 	
 	public FrameUI() {
 		super(title);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JTabbedPane jtp = new JTabbedPane();
+		jtp.setPreferredSize(new Dimension(500, 500));
         getContentPane().add(jtp);
         JPanel jp2 = new JPanel();
         JPanel jp3 = new JPanel();
