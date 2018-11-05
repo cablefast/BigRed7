@@ -9,6 +9,7 @@ public class FrameUI extends JFrame{
 	private static String title = "Big Red Seven";
 	
 	private SearchTab search = new SearchTab();
+	private AdvancedSearchTab adv = new AdvancedSearchTab();
 	
 	static final long serialVersionUID = 1L;
 	
@@ -18,11 +19,10 @@ public class FrameUI extends JFrame{
 		JTabbedPane jtp = new JTabbedPane();
 		jtp.setPreferredSize(new Dimension(500, 500));
         getContentPane().add(jtp);
-        JPanel jp2 = new JPanel();
         JPanel jp3 = new JPanel();
         JPanel jp4 = new JPanel();
         jtp.addTab("Search", search);
-        jtp.addTab("Adv. Search", jp2);
+        jtp.addTab("Adv. Search", adv);
         jtp.addTab("Change", jp3);
         jtp.addTab("Admin", jp4);
         pack();
