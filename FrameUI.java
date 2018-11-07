@@ -1,7 +1,6 @@
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 public class FrameUI extends JFrame{
@@ -10,6 +9,8 @@ public class FrameUI extends JFrame{
 	
 	private SearchTab search = new SearchTab();
 	private AdvancedSearchTab adv = new AdvancedSearchTab();
+	private ChangeTab change = new ChangeTab();
+	private AdminTab admin = new AdminTab();
 	
 	static final long serialVersionUID = 1L;
 	
@@ -19,12 +20,10 @@ public class FrameUI extends JFrame{
 		JTabbedPane jtp = new JTabbedPane();
 		jtp.setPreferredSize(new Dimension(500, 500));
         getContentPane().add(jtp);
-        JPanel jp3 = new JPanel();
-        JPanel jp4 = new JPanel();
         jtp.addTab("Search", search);
         jtp.addTab("Adv. Search", adv);
-        jtp.addTab("Change", jp3);
-        jtp.addTab("Admin", jp4);
+        jtp.addTab("Change", change);
+        jtp.addTab("Admin", admin);
         pack();
 	}
 }
