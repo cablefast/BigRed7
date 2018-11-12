@@ -1,3 +1,4 @@
+package br7;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;

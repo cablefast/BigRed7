@@ -1,3 +1,4 @@
+package br7;
 import java.sql.*;
 import java.io.StringWriter;
 import java.io.PrintWriter;
@@ -19,20 +20,22 @@ public class connectSQL {
 	
 	public static ArrayList<String> searchSQL(int buttonState, String userData) {
 		result =new ArrayList<String>();
-		result.add(columnNames);
 		userData += "%";
 		try (Connection con = DriverManager.getConnection(url, username, password)) {
 			switch (buttonState) {
 			case 1: searchForAsset(userData, con);
 				if (result.isEmpty()) result.add(noResultMsg);
+				else result.add(0, columnNames);
 				con.close();
 				return result;
 			case 2: searchForUser(userData, con);
 				if (result.isEmpty()) result.add(noResultMsg);
+				else result.add(0, columnNames);
 				con.close();
 				return result;
 			case 3: searchForBldg(userData, con);
 				if (result.isEmpty()) result.add(noResultMsg);
+				else result.add(0, columnNames);
 				con.close();
 				return result;
 			default: result.add(unableToSeachMsg);

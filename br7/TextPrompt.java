@@ -1,3 +1,4 @@
+package br7;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -6,6 +7,10 @@ import javax.swing.event.*;
 import javax.swing.text.*;
 
 /**
+ * @author      Rob Carmick <https://tips4java.wordpress.com/2009/11/29/text-prompt/>
+ * @version     1.0
+ * @since       1.0
+ *  
  *  The TextPrompt class will display a prompt over top of a text component when
  *  the Document of the text field is empty. The Show property is used to
  *  determine the visibility of the prompt.

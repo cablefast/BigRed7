@@ -1,3 +1,4 @@
+package br7;
 import javax.swing.JFrame;
 
 public class LauncherMain {

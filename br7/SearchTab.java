@@ -1,3 +1,4 @@
+package br7;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
@@ -22,7 +23,7 @@ public class SearchTab extends JPanel implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	private int selectedButton;
-	private String searchFieldPromptText = "Search";
+	private String searchFieldPromptText = "Press ENTER to Search";
 	private JTextField txtfldUserSearchParam;
 	private JScrollPane scrollPane;
 	private JTextArea txtaraSearchResults;
