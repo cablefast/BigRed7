@@ -12,7 +12,7 @@ public class AdvancedSearchTab extends JPanel {
 	private JTextField txtfldUserSearchParam;
 
 	public AdvancedSearchTab() {
-		setLayout(new MigLayout("", "[100,grow,left][grow][grow][100,grow,right]", "[grow][][][]"));
+		setLayout(new MigLayout("", "[grow][grow][grow][grow]", "[grow][][][]"));
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);

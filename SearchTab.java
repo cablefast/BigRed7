@@ -2,36 +2,40 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JFileChooser.*;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 import javax.swing.ButtonGroup;
 import javax.swing.JToggleButton;
 import net.miginfocom.swing.MigLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.ArrayList;
-
-
-
 
 public class SearchTab extends JPanel implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
+	private int selectedButton;
+	private String searchFieldPromptText = "Search";
 	private JTextField txtfldUserSearchParam;
+	private JScrollPane scrollPane;
 	private JTextArea txtaraSearchResults;
 	private JButton btnClear, btnExport;
+	private JToggleButton tglbtnByAssetTag, tglbtnByUserName, tglbtnByBldg;
 	private JFileChooser fc;
 	private final ButtonGroup buttonGroupSearchTypes = new ButtonGroup();
 	private static ArrayList<String> result=new ArrayList<String>();
 
 	public SearchTab() {
-		setLayout(new MigLayout("", "[100,grow][100,grow][100,grow][100,grow]", "[grow][][][]"));
+		setLayout(new MigLayout("", "[grow][grow][grow][grow]", "[grow][][][]"));
 		
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		add(scrollPane, "cell 0 0 4 1,grow");
 		
@@ -39,28 +43,28 @@ public class SearchTab extends JPanel implements ActionListener{
 		txtaraSearchResults.setEditable(false);
 		scrollPane.setViewportView(txtaraSearchResults);
 		
-		JToggleButton tglbtnByAssetTag = new JToggleButton("Asset Tag");
+		tglbtnByAssetTag = new JToggleButton("Asset Tag");
 		tglbtnByAssetTag.setSelected(true);
 		buttonGroupSearchTypes.add(tglbtnByAssetTag);
 		add(tglbtnByAssetTag, "cell 0 1,grow");
 		
-		JToggleButton tglbtnByUserName = new JToggleButton("User Name");
+		tglbtnByUserName = new JToggleButton("User Name");
 		buttonGroupSearchTypes.add(tglbtnByUserName);
-		add(tglbtnByUserName, "cell 1 1,grow");
+		add(tglbtnByUserName, "cell 1 1 2 1,grow");
 		
-		JToggleButton tglbtnByBldg = new JToggleButton("Bldg Nbr");
+		tglbtnByBldg = new JToggleButton("Bldg Nbr");
 		buttonGroupSearchTypes.add(tglbtnByBldg);
-		add(tglbtnByBldg, "cell 2 1,grow");
-		
-		JToggleButton tglbtnAllAssets = new JToggleButton("All Assets");
-		buttonGroupSearchTypes.add(tglbtnAllAssets);
-		add(tglbtnAllAssets, "cell 3 1,grow");			
+		add(tglbtnByBldg, "cell 3 1,grow");
 		
 		txtfldUserSearchParam = new JTextField();
 		txtfldUserSearchParam.setToolTipText("Search");
 		txtfldUserSearchParam.addActionListener(this);
 		add(txtfldUserSearchParam, "cell 1 2 2 1,grow");
-		txtfldUserSearchParam.setColumns(10);
+		
+		TextPrompt.Show promptShow = TextPrompt.Show.FOCUS_LOST;
+		TextPrompt txtfldPrompt = new TextPrompt(searchFieldPromptText, txtfldUserSearchParam, promptShow);
+		txtfldPrompt.changeStyle(Font.ITALIC);
+		
 		
 		btnClear = new JButton("Clear");
 		btnClear.addActionListener(this);
@@ -71,29 +75,65 @@ public class SearchTab extends JPanel implements ActionListener{
 		add(btnExport, "cell 2 3,grow");
 	}
 	
+	private int getButtonState() {
+		if (tglbtnByAssetTag.isSelected()) selectedButton = 1;
+		if (tglbtnByUserName.isSelected()) selectedButton = 2;
+		if (tglbtnByBldg.isSelected()) selectedButton = 3;
+		return selectedButton;
+	}
+	
 	public void actionPerformed(ActionEvent e) {
+		String userhome = System.getProperty("user.home");
+		fc = new JFileChooser(userhome +"\\Documents");
+		
+		
 		if (e.getSource() == btnExport) {
-			int returnVal = 1;//fc.showSaveDialog(SearchTab.this);
+			int returnVal = fc.showSaveDialog(SearchTab.this);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				File file = fc.getSelectedFile();
+				String filepath = file.getAbsolutePath();
+				if (filepath.endsWith(".csv")) file = new File(file.getAbsolutePath());
+				else file = new File(file.getAbsolutePath() + ".csv");
+				BufferedWriter outFile = null;
+				try {
+					outFile = new BufferedWriter(new FileWriter(file));
+					txtaraSearchResults.write(outFile);
+					outFile.close();
+				} 
+				catch (Exception ex) {
+					StringWriter sw = new StringWriter();
+					PrintWriter pw = new PrintWriter(sw);
+					ex.printStackTrace(pw);
+					result.add(sw.toString());
+					for (int i = 0; i < result.size(); i++) txtaraSearchResults.append(result.get(i) + "\n");
+					result.clear();
+				} 
+				finally {
+					if (outFile != null) {
+						try {
+							outFile.close();
+						} catch (Exception ex) {
+							StringWriter sw = new StringWriter();
+							PrintWriter pw = new PrintWriter(sw);
+							ex.printStackTrace(pw);
+							result.add(sw.toString());
+							for (int i = 0; i < result.size(); i++) txtaraSearchResults.append(result.get(i) + "\n");
+							result.clear();
+						}
+					}
+				}
 				txtaraSearchResults.append("Saving: " + file.getName() + "." + "\n");
-			} else {
+			}
+			else {
 				txtaraSearchResults.append("Save command cancelled by user." + "\n");
             }
-			txtaraSearchResults.setCaretPosition(txtaraSearchResults.getDocument().getLength());
-		
 		}
-		
-		
-		
 		else if (e.getSource() == btnClear) {
 			txtaraSearchResults.setText(null);
 		}
 		else if (e.getSource() == txtfldUserSearchParam) {
-			result = connectSQL.searchForAsset(txtfldUserSearchParam.getText());
-			for (int i = 0; i < result.size(); i++) {
-				txtaraSearchResults.append(result.get(i) + "\n");
-			}
+			result = connectSQL.searchSQL(getButtonState(),txtfldUserSearchParam.getText());
+			for (int i = 0; i < result.size(); i++) txtaraSearchResults.append(result.get(i) + "\n");
 			result.clear();
 		}
 	}
