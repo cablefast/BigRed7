@@ -25,6 +25,7 @@ public class SearchTab extends JPanel implements ActionListener{
 	private int selectedButton;
 	private String searchFieldPromptText = "Press ENTER to Search";
 	private JTextField txtfldUserSearchParam;
+	private TextPrompt txtfldPrompt;
 	private JScrollPane scrollPane;
 	private JTextArea txtaraSearchResults;
 	private JButton btnClear, btnExport;
@@ -58,14 +59,11 @@ public class SearchTab extends JPanel implements ActionListener{
 		add(tglbtnByBldg, "cell 3 1,grow");
 		
 		txtfldUserSearchParam = new JTextField();
-		txtfldUserSearchParam.setToolTipText("Search");
 		txtfldUserSearchParam.addActionListener(this);
 		add(txtfldUserSearchParam, "cell 1 2 2 1,grow");
 		
-		TextPrompt.Show promptShow = TextPrompt.Show.FOCUS_LOST;
-		TextPrompt txtfldPrompt = new TextPrompt(searchFieldPromptText, txtfldUserSearchParam, promptShow);
+		txtfldPrompt = new TextPrompt(searchFieldPromptText, txtfldUserSearchParam, TextPrompt.Show.FOCUS_LOST);
 		txtfldPrompt.changeStyle(Font.ITALIC);
-		
 		
 		btnClear = new JButton("Clear");
 		btnClear.addActionListener(this);
@@ -125,15 +123,14 @@ public class SearchTab extends JPanel implements ActionListener{
 				}
 				txtaraSearchResults.append("Saving: " + file.getName() + "." + "\n");
 			}
-			else {
-				txtaraSearchResults.append("Save command cancelled by user." + "\n");
-            }
+			else txtaraSearchResults.append("Save command cancelled by user." + "\n");
 		}
-		else if (e.getSource() == btnClear) {
-			txtaraSearchResults.setText(null);
-		}
+		
+		else if (e.getSource() == btnClear)	txtaraSearchResults.setText(null);
+		
 		else if (e.getSource() == txtfldUserSearchParam) {
-			result = connectSQL.searchSQL(getButtonState(),txtfldUserSearchParam.getText());
+			String userTextToPass = "%" + txtfldUserSearchParam.getText() + "%";
+			result = connectSQL.searchSQL(getButtonState(),userTextToPass);
 			for (int i = 0; i < result.size(); i++) txtaraSearchResults.append(result.get(i) + "\n");
 			result.clear();
 		}

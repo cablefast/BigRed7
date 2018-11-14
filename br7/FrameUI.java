@@ -7,7 +7,6 @@ import javax.swing.JTabbedPane;
 public class FrameUI extends JFrame{
 
 	private static String title = "Big Red Seven";
-	
 	private SearchTab search = new SearchTab();
 	private AdvancedSearchTab adv = new AdvancedSearchTab();
 	private ChangeTab change = new ChangeTab();
