@@ -17,7 +17,6 @@ import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 
 public class AdvancedSearchTab extends JPanel implements ActionListener {
 
@@ -31,11 +30,15 @@ public class AdvancedSearchTab extends JPanel implements ActionListener {
 	private JButton btnClear, btnExport;
 	private String searchFieldPromptText = "Press ENTER to Search";
 	private static ArrayList<String> result=new ArrayList<String>();
+	
 	private static final String[] COMBOOPT = new String[] {"Serial Number","Make","Model","Windows Name","Classification",
 			"Purchase Date","Warranty Date","Building","Room","EDIPI","Last Name","First Name","PARA","LN","Support Level",
 			"Support Description"};
 	private JButton btnColumnsDisplayed;
+	
+	private columnSelection select;
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public AdvancedSearchTab() {
 		setLayout(new MigLayout("", "[grow][grow][grow][grow]", "[grow][][][]"));
 		
@@ -68,20 +71,29 @@ public class AdvancedSearchTab extends JPanel implements ActionListener {
 		btnExport = new JButton("Export");
 		btnExport.addActionListener(this);
 		add(btnExport, "cell 2 3,grow");
+		
+		select = new columnSelection();
+		select.setVisible(false);
 
 	}
 	
 	public void actionPerformed(ActionEvent e) {
 		String userhome = System.getProperty("user.home");
-		fc = new JFileChooser(userhome +"\\Documents");
+		fc = new JFileChooser(userhome +"\\Documents");		
 		
 		if (e.getSource() == btnExport) {
 			int returnVal = fc.showSaveDialog(AdvancedSearchTab.this);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				File file = fc.getSelectedFile();
 				String filepath = file.getAbsolutePath();
-				if (filepath.endsWith(".csv")) file = new File(file.getAbsolutePath());
-				else file = new File(file.getAbsolutePath() + ".csv");
+				if (filepath.endsWith(".csv")) {
+					file = new File(filepath);
+					txtaraSearchResults.append("Saving: " + filepath + "\n");
+				}
+				else {
+					file = new File(filepath + ".csv");
+					txtaraSearchResults.append("Saving: " + filepath + ".csv" + "\n");
+				}
 				BufferedWriter outFile = null;
 				try {
 					outFile = new BufferedWriter(new FileWriter(file));
@@ -110,16 +122,12 @@ public class AdvancedSearchTab extends JPanel implements ActionListener {
 						}
 					}
 				}
-				txtaraSearchResults.append("Saving: " + file.getName() + "." + "\n");
 			}
 			else txtaraSearchResults.append("Save command cancelled by user." + "\n");
 		}
 		
-		if (e.getSource() == btnClear)	txtaraSearchResults.setText(null);
-		
 		else if (e.getSource() == btnColumnsDisplayed) {
-			columnSelection select = new columnSelection();
-			//select.setVisible(true);
+			select.setVisible(true);
 		}
 		
 		else if (e.getSource() == txtfldUserSearchParam) {

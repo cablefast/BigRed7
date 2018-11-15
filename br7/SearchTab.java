@@ -85,14 +85,19 @@ public class SearchTab extends JPanel implements ActionListener{
 		String userhome = System.getProperty("user.home");
 		fc = new JFileChooser(userhome +"\\Documents");
 		
-		
 		if (e.getSource() == btnExport) {
 			int returnVal = fc.showSaveDialog(SearchTab.this);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				File file = fc.getSelectedFile();
 				String filepath = file.getAbsolutePath();
-				if (filepath.endsWith(".csv")) file = new File(file.getAbsolutePath());
-				else file = new File(file.getAbsolutePath() + ".csv");
+				if (filepath.endsWith(".csv")) {
+					file = new File(filepath);
+					txtaraSearchResults.append("Saving: " + filepath + "\n");
+				}
+				else {
+					file = new File(filepath + ".csv");
+					txtaraSearchResults.append("Saving: " + filepath + ".csv" + "\n");
+				}
 				BufferedWriter outFile = null;
 				try {
 					outFile = new BufferedWriter(new FileWriter(file));
@@ -121,7 +126,6 @@ public class SearchTab extends JPanel implements ActionListener{
 						}
 					}
 				}
-				txtaraSearchResults.append("Saving: " + file.getName() + "." + "\n");
 			}
 			else txtaraSearchResults.append("Save command cancelled by user." + "\n");
 		}
@@ -129,7 +133,7 @@ public class SearchTab extends JPanel implements ActionListener{
 		else if (e.getSource() == btnClear)	txtaraSearchResults.setText(null);
 		
 		else if (e.getSource() == txtfldUserSearchParam) {
-			String userTextToPass = "%" + txtfldUserSearchParam.getText() + "%";
+			String userTextToPass = txtfldUserSearchParam.getText();
 			result = connectSQL.searchSQL(getButtonState(),userTextToPass);
 			for (int i = 0; i < result.size(); i++) txtaraSearchResults.append(result.get(i) + "\n");
 			result.clear();

@@ -7,7 +7,5 @@ public class LauncherMain {
 		FrameUI frame = new FrameUI();
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    frame.setVisible(true);
-
 	}
-
 }

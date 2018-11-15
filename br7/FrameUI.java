@@ -18,7 +18,7 @@ public class FrameUI extends JFrame{
 		super(title);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JTabbedPane jtp = new JTabbedPane();
-		jtp.setPreferredSize(new Dimension(500, 500));
+		jtp.setPreferredSize(new Dimension(800, 800));
         getContentPane().add(jtp);
         jtp.addTab("Search", search);
         jtp.addTab("Adv. Search", adv);
