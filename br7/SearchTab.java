@@ -75,9 +75,9 @@ public class SearchTab extends JPanel implements ActionListener{
 	}
 	
 	private int getButtonState() {
-		if (tglbtnByAssetTag.isSelected()) selectedButton = 1;
-		if (tglbtnByUserName.isSelected()) selectedButton = 2;
-		if (tglbtnByBldg.isSelected()) selectedButton = 3;
+		if (tglbtnByAssetTag.isSelected()) selectedButton = 0;
+		if (tglbtnByUserName.isSelected()) selectedButton = 1;
+		if (tglbtnByBldg.isSelected()) selectedButton = 2;
 		return selectedButton;
 	}
 	

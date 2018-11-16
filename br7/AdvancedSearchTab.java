@@ -21,6 +21,7 @@ import javax.swing.JFileChooser;
 public class AdvancedSearchTab extends JPanel implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
+	private int selectedButton;
 	private JTextField txtfldUserSearchParam;
 	private TextPrompt txtfldPrompt;
 	private JScrollPane scrollPane;
@@ -77,6 +78,26 @@ public class AdvancedSearchTab extends JPanel implements ActionListener {
 
 	}
 	
+	private int getButtonState() {
+		if (cmbUserSearchFieldSelection.getSelectedItem() == COMBOOPT[0]) selectedButton = 0;
+		if (cmbUserSearchFieldSelection.getSelectedItem() == COMBOOPT[1]) selectedButton = 1;
+		if (cmbUserSearchFieldSelection.getSelectedItem() == COMBOOPT[2]) selectedButton = 2;
+		if (cmbUserSearchFieldSelection.getSelectedItem() == COMBOOPT[3]) selectedButton = 3;
+		if (cmbUserSearchFieldSelection.getSelectedItem() == COMBOOPT[4]) selectedButton = 4;
+		if (cmbUserSearchFieldSelection.getSelectedItem() == COMBOOPT[5]) selectedButton = 5;
+		if (cmbUserSearchFieldSelection.getSelectedItem() == COMBOOPT[6]) selectedButton = 6;
+		if (cmbUserSearchFieldSelection.getSelectedItem() == COMBOOPT[7]) selectedButton = 7;
+		if (cmbUserSearchFieldSelection.getSelectedItem() == COMBOOPT[8]) selectedButton = 8;
+		if (cmbUserSearchFieldSelection.getSelectedItem() == COMBOOPT[9]) selectedButton = 9;
+		if (cmbUserSearchFieldSelection.getSelectedItem() == COMBOOPT[10]) selectedButton = 10;
+		if (cmbUserSearchFieldSelection.getSelectedItem() == COMBOOPT[11]) selectedButton = 11;
+		if (cmbUserSearchFieldSelection.getSelectedItem() == COMBOOPT[12]) selectedButton = 12;
+		if (cmbUserSearchFieldSelection.getSelectedItem() == COMBOOPT[13]) selectedButton = 13;
+		if (cmbUserSearchFieldSelection.getSelectedItem() == COMBOOPT[14]) selectedButton = 14;
+		if (cmbUserSearchFieldSelection.getSelectedItem() == COMBOOPT[15]) selectedButton = 15;
+		return selectedButton;
+	}
+	
 	public void actionPerformed(ActionEvent e) {
 		String userhome = System.getProperty("user.home");
 		fc = new JFileChooser(userhome +"\\Documents");		
@@ -130,10 +151,11 @@ public class AdvancedSearchTab extends JPanel implements ActionListener {
 			select.setVisible(true);
 		}
 		
+		else if (e.getSource() == btnClear)	txtaraSearchResults.setText(null);
+		
 		else if (e.getSource() == txtfldUserSearchParam) {
-			String userTextToPass = "%" + txtfldUserSearchParam.getText() + "%";
-			String userAdvSelectToPass = (String) cmbUserSearchFieldSelection.getSelectedItem();
-			result = connectSQL.advSearchSQL(userAdvSelectToPass,userTextToPass);
+			String userTextToPass = txtfldUserSearchParam.getText();
+			result = connectSQL.advSearchSQL(getButtonState(),userTextToPass);
 			for (int i = 0; i < result.size(); i++) txtaraSearchResults.append(result.get(i) + "\n");
 			result.clear();
 		}
