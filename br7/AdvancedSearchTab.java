@@ -37,7 +37,7 @@ public class AdvancedSearchTab extends JPanel implements ActionListener {
 			"Support Description"};
 	private JButton btnColumnsDisplayed;
 	
-	private columnSelection select;
+	private ColumnSelection select;
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public AdvancedSearchTab() {
@@ -73,7 +73,7 @@ public class AdvancedSearchTab extends JPanel implements ActionListener {
 		btnExport.addActionListener(this);
 		add(btnExport, "cell 2 3,grow");
 		
-		select = new columnSelection();
+		select = new ColumnSelection();
 		select.setVisible(false);
 
 	}
@@ -155,7 +155,7 @@ public class AdvancedSearchTab extends JPanel implements ActionListener {
 		
 		else if (e.getSource() == txtfldUserSearchParam) {
 			String userTextToPass = txtfldUserSearchParam.getText();
-			result = connectSQL.advSearchSQL(getButtonState(),userTextToPass);
+			result = ConnectSQL.advSearchSQL(getButtonState(),userTextToPass);
 			for (int i = 0; i < result.size(); i++) txtaraSearchResults.append(result.get(i) + "\n");
 			result.clear();
 		}

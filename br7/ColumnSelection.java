@@ -9,7 +9,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 
-public class columnSelection extends JFrame implements ActionListener{
+public class ColumnSelection extends JFrame implements ActionListener {
 	
 	private static final long serialVersionUID = 1L;
 	private static final String TITLE = "Select Column(s)";
@@ -21,7 +21,7 @@ public class columnSelection extends JFrame implements ActionListener{
 			"Support Description"};
 	private JButton btnSelectAll, btnUnselectAll;
 	
-	public columnSelection() {
+	public ColumnSelection() {
 		super(TITLE);
 		setSize(new Dimension(165, 490));
 		setAlwaysOnTop(true);

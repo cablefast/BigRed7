@@ -4,7 +4,7 @@ import java.io.StringWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-public class connectSQL {
+public class ConnectSQL {
 	private static String url = "jdbc:mysql://192.168.32.130:3306/br7";
 	private static String username = "mf56";
 	private static String password = "narrate^lips";
@@ -146,22 +146,22 @@ public class connectSQL {
 			ResultSet rs=pstmt.executeQuery();
 			while(rs.next()) {
 				row = "";
-				if (columnSelection.getSerNumState()) row += rs.getString(1)+", ";
-				if (columnSelection.getMakeState()) row += rs.getString(2)+", ";
-				if (columnSelection.getModelState()) row += rs.getString(3)+", ";
-				if (columnSelection.getWinNameState()) row += rs.getString(4)+", ";
-				if (columnSelection.getClassState()) row += rs.getString(5)+", ";
-				if (columnSelection.getPurchaseState()) row += rs.getString(6)+", ";
-				if (columnSelection.getWarrantyState()) row += rs.getString(7)+", ";
-				if (columnSelection.getBldgState()) row += rs.getString(8)+", ";
-				if (columnSelection.getRmState()) row += rs.getString(9)+", ";
-				if (columnSelection.getEDIPIState()) row += rs.getString(10)+", ";
-				if (columnSelection.getLastState()) row += rs.getString(11)+", ";
-				if (columnSelection.getFirstState()) row += rs.getString(12)+", ";
-				if (columnSelection.getParaState()) row += rs.getString(13)+", ";
-				if (columnSelection.getLnState()) row += rs.getString(14)+", ";
-				if (columnSelection.getSptState()) row += rs.getString(15)+", ";
-				if (columnSelection.getSptDecState()) row += rs.getString(16)+", ";
+				if (ColumnSelection.getSerNumState()) row += rs.getString(1)+", ";
+				if (ColumnSelection.getMakeState()) row += rs.getString(2)+", ";
+				if (ColumnSelection.getModelState()) row += rs.getString(3)+", ";
+				if (ColumnSelection.getWinNameState()) row += rs.getString(4)+", ";
+				if (ColumnSelection.getClassState()) row += rs.getString(5)+", ";
+				if (ColumnSelection.getPurchaseState()) row += rs.getString(6)+", ";
+				if (ColumnSelection.getWarrantyState()) row += rs.getString(7)+", ";
+				if (ColumnSelection.getBldgState()) row += rs.getString(8)+", ";
+				if (ColumnSelection.getRmState()) row += rs.getString(9)+", ";
+				if (ColumnSelection.getEDIPIState()) row += rs.getString(10)+", ";
+				if (ColumnSelection.getLastState()) row += rs.getString(11)+", ";
+				if (ColumnSelection.getFirstState()) row += rs.getString(12)+", ";
+				if (ColumnSelection.getParaState()) row += rs.getString(13)+", ";
+				if (ColumnSelection.getLnState()) row += rs.getString(14)+", ";
+				if (ColumnSelection.getSptState()) row += rs.getString(15)+", ";
+				if (ColumnSelection.getSptDecState()) row += rs.getString(16)+", ";
 				if (row.length() > 0) row = row.substring(0, row.length()-2);
 				result.add(row);
 			}
@@ -171,22 +171,22 @@ public class connectSQL {
 			if (result.isEmpty()) result.add(NORESULTSMSG);
 			else {
 				row = "";
-				if (columnSelection.getSerNumState()) row += row = COMBOOPT[0]+", ";
-				if (columnSelection.getMakeState()) row += COMBOOPT[1]+", ";
-				if (columnSelection.getModelState()) row += COMBOOPT[2]+", ";
-				if (columnSelection.getWinNameState()) row += COMBOOPT[3]+", ";
-				if (columnSelection.getClassState()) row += COMBOOPT[4]+", ";
-				if (columnSelection.getPurchaseState()) row += COMBOOPT[5]+", ";
-				if (columnSelection.getWarrantyState()) row += COMBOOPT[6]+", ";
-				if (columnSelection.getBldgState()) row += COMBOOPT[7]+", ";
-				if (columnSelection.getRmState()) row += COMBOOPT[8]+", ";
-				if (columnSelection.getEDIPIState()) row += COMBOOPT[9]+", ";
-				if (columnSelection.getLastState()) row += COMBOOPT[10]+", ";
-				if (columnSelection.getFirstState()) row += COMBOOPT[11]+", ";
-				if (columnSelection.getParaState()) row += COMBOOPT[12]+", ";
-				if (columnSelection.getLnState()) row += COMBOOPT[13]+", ";
-				if (columnSelection.getSptState()) row += COMBOOPT[14]+", ";
-				if (columnSelection.getSptDecState()) row += COMBOOPT[15]+", ";
+				if (ColumnSelection.getSerNumState()) row += row = COMBOOPT[0]+", ";
+				if (ColumnSelection.getMakeState()) row += COMBOOPT[1]+", ";
+				if (ColumnSelection.getModelState()) row += COMBOOPT[2]+", ";
+				if (ColumnSelection.getWinNameState()) row += COMBOOPT[3]+", ";
+				if (ColumnSelection.getClassState()) row += COMBOOPT[4]+", ";
+				if (ColumnSelection.getPurchaseState()) row += COMBOOPT[5]+", ";
+				if (ColumnSelection.getWarrantyState()) row += COMBOOPT[6]+", ";
+				if (ColumnSelection.getBldgState()) row += COMBOOPT[7]+", ";
+				if (ColumnSelection.getRmState()) row += COMBOOPT[8]+", ";
+				if (ColumnSelection.getEDIPIState()) row += COMBOOPT[9]+", ";
+				if (ColumnSelection.getLastState()) row += COMBOOPT[10]+", ";
+				if (ColumnSelection.getFirstState()) row += COMBOOPT[11]+", ";
+				if (ColumnSelection.getParaState()) row += COMBOOPT[12]+", ";
+				if (ColumnSelection.getLnState()) row += COMBOOPT[13]+", ";
+				if (ColumnSelection.getSptState()) row += COMBOOPT[14]+", ";
+				if (ColumnSelection.getSptDecState()) row += COMBOOPT[15]+", ";
 				if (row.length() > 0) row = row.substring(0, row.length()-2);
 				result.add(0, row);
 			}

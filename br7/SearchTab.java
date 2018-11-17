@@ -134,7 +134,7 @@ public class SearchTab extends JPanel implements ActionListener{
 		
 		else if (e.getSource() == txtfldUserSearchParam) {
 			String userTextToPass = txtfldUserSearchParam.getText();
-			result = connectSQL.searchSQL(getButtonState(),userTextToPass);
+			result = ConnectSQL.searchSQL(getButtonState(),userTextToPass);
 			for (int i = 0; i < result.size(); i++) txtaraSearchResults.append(result.get(i) + "\n");
 			result.clear();
 		}

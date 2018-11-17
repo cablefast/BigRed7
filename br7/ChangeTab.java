@@ -6,19 +6,18 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JCheckBox;
 
-public class ChangeTab extends JPanel{
+public class ChangeTab extends JPanel implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
+	
+	private InputAsset asset;
 
 	public ChangeTab() {
 		setLayout(new MigLayout("", "[grow][][grow][][]", "[grow][][grow][][grow][][grow]"));
 		
 		JButton btnNewAsset = new JButton("New Asset");
-		btnNewAsset.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		add(btnNewAsset, "cell 0 0,growx,aligny center");
+		btnNewAsset.addActionListener(this);
 		
 		JButton btnNewUser = new JButton("New User");
 		add(btnNewUser, "cell 2 0,growx,aligny center");
@@ -43,6 +42,13 @@ public class ChangeTab extends JPanel{
 		
 		JButton btnDeleteUser = new JButton("Delete User");
 		add(btnDeleteUser, "cell 2 6,growx,aligny center");
+		
+		asset = new InputAsset();
+		asset.setVisible(false);
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		asset.setVisible(true);
 	}
 
 }
