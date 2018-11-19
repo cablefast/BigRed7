@@ -11,6 +11,7 @@ public class ChangeTab extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	
 	private InputAsset asset;
+	private InputUser user;
 
 	public ChangeTab() {
 		setLayout(new MigLayout("", "[grow][][grow][][]", "[grow][][grow][][grow][][grow]"));
@@ -45,10 +46,14 @@ public class ChangeTab extends JPanel implements ActionListener {
 		
 		asset = new InputAsset();
 		asset.setVisible(false);
+		
+		user = new InputUser();
+		user.setVisible(false);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		asset.setVisible(true);
+		//asset.setVisible(true);
+		user.setVisible(true);
 	}
 
 }

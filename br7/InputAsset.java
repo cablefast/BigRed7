@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
-import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.GridLayout;
 import javax.swing.JButton;
@@ -27,66 +26,63 @@ public class InputAsset extends JFrame implements ActionListener {
 		setSize(new Dimension(250, 500));
 		setAlwaysOnTop(true);
 		setType(Type.UTILITY);
-		
-		JPanel panel = new JPanel();
-		getContentPane().add(panel);
-		panel.setLayout(new GridLayout(8, 2, 10, 40));
+		getContentPane().setLayout(new GridLayout(8, 2, 5, 40));
 		
 		lblSerialNumber = new JLabel("Serial Number");
-		panel.add(lblSerialNumber);
+		getContentPane().add(lblSerialNumber);
 		
 		txtSerialNumber = new JTextField();
-		panel.add(txtSerialNumber);
+		getContentPane().add(txtSerialNumber);
 		
 		lblMake = new JLabel("Make");
-		panel.add(lblMake);
+		getContentPane().add(lblMake);
 		
 		txtMake = new JTextField();
-		panel.add(txtMake);
+		getContentPane().add(txtMake);
 		
 		lblModel = new JLabel("Model");
-		panel.add(lblModel);
+		getContentPane().add(lblModel);
 		
 		txtModel = new JTextField();
-		panel.add(txtModel);
+		getContentPane().add(txtModel);
 		
 		lblPurchaseDate = new JLabel("Purchase Date");
-		panel.add(lblPurchaseDate);
+		getContentPane().add(lblPurchaseDate);
 		
 		txtPurchaseDate = new JTextField();
+		getContentPane().add(txtPurchaseDate);
 		txtPurchaseDate.setToolTipText("YYYY-MM-DD");
-		panel.add(txtPurchaseDate);
 		
 		datePrompt = new TextPrompt(DATEPRMPTTXT, txtPurchaseDate, TextPrompt.Show.FOCUS_LOST);
 		datePrompt.changeStyle(Font.ITALIC);
 		
 		lblWarrantyEndDate = new JLabel("Warranty End Date");
-		panel.add(lblWarrantyEndDate);
+		getContentPane().add(lblWarrantyEndDate);
 		
 		txtWarrantyEndDate = new JTextField();
+		getContentPane().add(txtWarrantyEndDate);
 		txtWarrantyEndDate.setToolTipText("YYYY-MM-DD");
-		panel.add(txtWarrantyEndDate);
-		
+				
 		datePrompt = new TextPrompt(DATEPRMPTTXT, txtWarrantyEndDate, TextPrompt.Show.FOCUS_LOST);
 		datePrompt.changeStyle(Font.ITALIC);
 		
 		lblBuildingNumber = new JLabel("Building Number");
-		panel.add(lblBuildingNumber);
+		getContentPane().add(lblBuildingNumber);
 		
 		txtBuildingNumber = new JTextField();
-		panel.add(txtBuildingNumber);
+		getContentPane().add(txtBuildingNumber);
 		
 		lblRoomNumber = new JLabel("Room Number");
-		panel.add(lblRoomNumber);
+		getContentPane().add(lblRoomNumber);
 		
 		txtRoomNumber = new JTextField();
-		panel.add(txtRoomNumber);
+		getContentPane().add(txtRoomNumber);
 		
 		btnInputAsset = new JButton("Input Asset");
-		panel.add(btnInputAsset);
+		getContentPane().add(btnInputAsset);
 		
 		btnCancel = new JButton("Cancel");
-		panel.add(btnCancel);
+		getContentPane().add(btnCancel);
 		
 		
 	}
