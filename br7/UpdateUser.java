@@ -9,12 +9,11 @@ import javax.swing.JLabel;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 
-public class InputUser extends JFrame implements ActionListener {
+public class UpdateUser extends JFrame implements ActionListener {
 	
 	private static final long serialVersionUID = 1L;
-	private static final String TITLE = "Input New User Data";
+	private static final String TITLE = "Update User Data";
 	private JTextField txtEdipi;
-	private JLabel lblEdipi;
 	private JTextField txtFirstName;
 	private JLabel lblLastName;
 	private JTextField txtLastName;
@@ -27,14 +26,14 @@ public class InputUser extends JFrame implements ActionListener {
 	private JButton btnInputUser;
 	private JButton btnCancel;
 	
-	public InputUser() {
+	public UpdateUser() {
 		super(TITLE);
 		setSize(new Dimension(250, 400));
 		setAlwaysOnTop(true);
 		setType(Type.UTILITY);
 		getContentPane().setLayout(new GridLayout(7, 2, 5, 30));
 		
-		lblEdipi = new JLabel("EDIPI");
+		JLabel lblEdipi = new JLabel("EDIPI");
 		getContentPane().add(lblEdipi);
 		
 		txtEdipi = new JTextField();

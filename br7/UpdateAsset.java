@@ -8,12 +8,14 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.GridLayout;
+import java.awt.Window.Type;
+
 import javax.swing.JButton;
 
-public class InputAsset extends JFrame implements ActionListener {
-
+public class UpdateAsset extends JFrame implements ActionListener {
+	
 	private static final long serialVersionUID = 1L;
-	private static final String TITLE = "Input New Asset Data";
+	private static final String TITLE = "Update Asset Data";
 	private JTextField txtSerialNumber;
 	private JTextField txtMake;
 	private JTextField txtModel;
@@ -29,11 +31,10 @@ public class InputAsset extends JFrame implements ActionListener {
 	private JLabel lblBuildingNumber;
 	private JLabel lblRoomNumber;
 	private TextPrompt datePrompt;
-	private JButton btnInputAsset, btnCancel;
+	private JButton btnUpdateAsset, btnCancel;
 	private static final String DATEPRMPTTXT = "YYYY-MM-DD";
 	
-	
-	public InputAsset() {
+	public UpdateAsset() {
 		super(TITLE);
 		setSize(new Dimension(250, 500));
 		setAlwaysOnTop(true);
@@ -90,15 +91,13 @@ public class InputAsset extends JFrame implements ActionListener {
 		txtRoomNumber = new JTextField();
 		getContentPane().add(txtRoomNumber);
 		
-		btnInputAsset = new JButton("Input Asset");
-		getContentPane().add(btnInputAsset);
+		btnUpdateAsset = new JButton("Update Asset");
+		getContentPane().add(btnUpdateAsset);
 		
 		btnCancel = new JButton("Cancel");
 		getContentPane().add(btnCancel);
-		
-		
 	}
-
+	
 	public void actionPerformed(ActionEvent e) {
 		
 	}
