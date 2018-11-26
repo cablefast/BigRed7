@@ -10,50 +10,96 @@ public class ChangeTab extends JPanel implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	
-	private InputAsset asset;
-	private InputUser user;
+	private JButton btnNewAsset;
+	private JButton btnNewUser;
+	private JButton btnAssignAsset;
+	private JButton btnUnassignAsset;
+	private JButton btnUpdateAsset;
+	private JButton btnDeleteAsset;
+	private JButton btnUpdateUser;
+	private JButton btnDeleteUser;
+	private JCheckBox chckbxUploadCsv;
+	private InputAsset inputAsset;
+	private InputUser inputUser;
+	private AssignAsset assignAsset;
+	private UnassignAsset unassignAsset;
+	private UpdateAsset updateAsset;
+	private DeleteAsset deleteAsset;
+	private UpdateUser updateUser;
+	private DeleteUser deleteUser;
 
 	public ChangeTab() {
 		setLayout(new MigLayout("", "[grow][][grow][][]", "[grow][][grow][][grow][][grow]"));
 		
-		JButton btnNewAsset = new JButton("New Asset");
+		btnNewAsset = new JButton("New Asset");
 		add(btnNewAsset, "cell 0 0,growx,aligny center");
 		btnNewAsset.addActionListener(this);
 		
-		JButton btnNewUser = new JButton("New User");
+		btnNewUser = new JButton("New User");
 		add(btnNewUser, "cell 2 0,growx,aligny center");
+		btnNewUser.addActionListener(this);
 		
-		JCheckBox chckbxUploadCsv = new JCheckBox("Upload CSV");
+		chckbxUploadCsv = new JCheckBox("Upload CSV");
 		add(chckbxUploadCsv, "cell 4 0");
 		
-		JButton btnAssignAsset = new JButton("Assign Asset");
+		btnAssignAsset = new JButton("Assign Asset");
 		add(btnAssignAsset, "cell 0 2,growx,aligny center");
+		btnAssignAsset.addActionListener(this);
 		
-		JButton btnUnassignAsset = new JButton("Unassign Asset");
+		btnUnassignAsset = new JButton("Unassign Asset");
 		add(btnUnassignAsset, "cell 2 2,growx,aligny center");
+		btnUnassignAsset.addActionListener(this);
 		
-		JButton btnUpdateAsset = new JButton("Update Asset");
+		btnUpdateAsset = new JButton("Update Asset");
 		add(btnUpdateAsset, "cell 0 4,growx,aligny center");
+		btnUpdateAsset.addActionListener(this);
 		
-		JButton btnDeleteAsset = new JButton("Delete Asset");
+		btnDeleteAsset = new JButton("Delete Asset");
 		add(btnDeleteAsset, "cell 2 4,growx,aligny center");
+		btnDeleteAsset.addActionListener(this);
 		
-		JButton btnUpdateUser = new JButton("Update User");
+		btnUpdateUser = new JButton("Update User");
 		add(btnUpdateUser, "cell 0 6,growx,aligny center");
+		btnUpdateUser.addActionListener(this);
 		
-		JButton btnDeleteUser = new JButton("Delete User");
+		btnDeleteUser = new JButton("Delete User");
 		add(btnDeleteUser, "cell 2 6,growx,aligny center");
+		btnDeleteUser.addActionListener(this);
 		
-		asset = new InputAsset();
-		asset.setVisible(false);
+		inputAsset = new InputAsset();
+		inputAsset.setVisible(false);
 		
-		user = new InputUser();
-		user.setVisible(false);
+		inputUser = new InputUser();
+		inputUser.setVisible(false);
+		
+		assignAsset = new AssignAsset();
+		assignAsset.setVisible(false);
+		
+		unassignAsset = new UnassignAsset();
+		unassignAsset.setVisible(false);
+		
+		updateAsset = new UpdateAsset();
+		updateAsset.setVisible(false);
+		
+		deleteAsset = new DeleteAsset();
+		deleteAsset.setVisible(false);
+		
+		updateUser = new UpdateUser();
+		updateUser.setVisible(false);
+		
+		deleteUser = new DeleteUser();
+		deleteUser.setVisible(false);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		//asset.setVisible(true);
-		user.setVisible(true);
+		if (e.getSource() == btnNewAsset) inputAsset.setVisible(true);
+		if (e.getSource() == btnNewUser) inputUser.setVisible(true);
+		if (e.getSource() == btnAssignAsset) assignAsset.setVisible(true);
+		if (e.getSource() == btnUnassignAsset) unassignAsset.setVisible(true);
+		if (e.getSource() == btnUpdateAsset) updateAsset.setVisible(true);
+		if (e.getSource() == btnDeleteAsset) deleteAsset.setVisible(true);
+		if (e.getSource() == btnUpdateUser) updateUser.setVisible(true);
+		if (e.getSource() == btnDeleteUser) deleteUser.setVisible(true);
 	}
 
 }

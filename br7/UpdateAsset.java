@@ -8,8 +8,6 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.GridLayout;
-import java.awt.Window.Type;
-
 import javax.swing.JButton;
 
 public class UpdateAsset extends JFrame implements ActionListener {
