@@ -4,7 +4,6 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JCheckBox;
 
 public class ChangeTab extends JPanel implements ActionListener {
 
@@ -18,7 +17,6 @@ public class ChangeTab extends JPanel implements ActionListener {
 	private JButton btnDeleteAsset;
 	private JButton btnUpdateUser;
 	private JButton btnDeleteUser;
-
 	private JButton btnUpdateServerInfo;
 	private InputAsset inputAsset;
 	private InputUser inputUser;
