@@ -18,7 +18,8 @@ public class ChangeTab extends JPanel implements ActionListener {
 	private JButton btnDeleteAsset;
 	private JButton btnUpdateUser;
 	private JButton btnDeleteUser;
-	private JCheckBox chckbxUploadCsv;
+
+	private JButton btnUpdateServerInfo;
 	private InputAsset inputAsset;
 	private InputUser inputUser;
 	private AssignAsset assignAsset;
@@ -27,9 +28,10 @@ public class ChangeTab extends JPanel implements ActionListener {
 	private DeleteAsset deleteAsset;
 	private UpdateUser updateUser;
 	private DeleteUser deleteUser;
+	private ServerInfo serverInfo;
 
 	public ChangeTab() {
-		setLayout(new MigLayout("", "[grow][][grow][][]", "[grow][][grow][][grow][][grow]"));
+		setLayout(new MigLayout("", "[grow][][grow]", "[grow][][grow][][grow][][grow][][grow]"));
 		
 		btnNewAsset = new JButton("New Asset");
 		add(btnNewAsset, "cell 0 0,growx,aligny center");
@@ -38,9 +40,6 @@ public class ChangeTab extends JPanel implements ActionListener {
 		btnNewUser = new JButton("New User");
 		add(btnNewUser, "cell 2 0,growx,aligny center");
 		btnNewUser.addActionListener(this);
-		
-		chckbxUploadCsv = new JCheckBox("Upload CSV");
-		add(chckbxUploadCsv, "cell 4 0");
 		
 		btnAssignAsset = new JButton("Assign Asset");
 		add(btnAssignAsset, "cell 0 2,growx,aligny center");
@@ -66,6 +65,10 @@ public class ChangeTab extends JPanel implements ActionListener {
 		add(btnDeleteUser, "cell 2 6,growx,aligny center");
 		btnDeleteUser.addActionListener(this);
 		
+		btnUpdateServerInfo = new JButton("Update Server Info");
+		add(btnUpdateServerInfo, "cell 0 8,growx,aligny center");
+		btnUpdateServerInfo.addActionListener(this);
+		
 		inputAsset = new InputAsset();
 		inputAsset.setVisible(false);
 		
@@ -89,6 +92,9 @@ public class ChangeTab extends JPanel implements ActionListener {
 		
 		deleteUser = new DeleteUser();
 		deleteUser.setVisible(false);
+		
+		serverInfo = new ServerInfo();
+		serverInfo.setVisible(false);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -100,6 +106,7 @@ public class ChangeTab extends JPanel implements ActionListener {
 		if (e.getSource() == btnDeleteAsset) deleteAsset.setVisible(true);
 		if (e.getSource() == btnUpdateUser) updateUser.setVisible(true);
 		if (e.getSource() == btnDeleteUser) deleteUser.setVisible(true);
+		if (e.getSource() == btnUpdateServerInfo) serverInfo.setVisible(true);
 	}
 
 }

@@ -1,30 +1,29 @@
 package br7;
 import java.sql.*;
 import java.io.StringWriter;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class ConnectSQL {
-	private static String url = "jdbc:mysql://192.168.32.130:3306/br7";
-	private static String username = "mf56";
-	private static String password = "narrate^lips";
-	
+	private static final String SERVDATFILE = "servdat.br7";
+	private static String url = "jdbc:mysql://";
+	private static String username;
+	private static String password;	
 	private static final String NORESULTSMSG = "No results found";
 	private static final String UNABLETOSEARCHMSG = "Oops... unable to complete this search. Please select a button.";
 	private static String row;
 	private static ArrayList<String> result;
-	private static final String SEARCHCOLNAMES = "Serial, Make, Model, Bldg, Room, Last, First, EDIPI";
-	
-	
-	
+	private static final String SEARCHCOLNAMES = "Serial, Make, Model, Bldg, Room, Last, First, EDIPI";	
 	private static final String SQLSEARCHTXT = "SELECT a.DSerNum,a.Make,a.Model,a.BldNum,a.RmNum,u.LName,u.FName,u.EDIPI "
 			+ "FROM asset a LEFT JOIN mtoe_asset m on a.DSerNum = m.DSerNum LEFT JOIN user u on CONCAT(m.Para,m.Ln,m.Pos)"
 			+ " = CONCAT(u.Para,u.Ln,u.Pos)";
 	private static final String SQLASSETSEARCHTXT = " WHERE a.DSerNum LIKE ?;";
 	private static final String SQLUSERSEARCHTXT = " WHERE u.LName LIKE ?;";
 	private static final String SQLBLDGSEARCHTXT = " WHERE a.BldNum LIKE ?;";
-	
-	private static  String[] COMBOOPT = new String[] {"Serial Number","Make","Model","Windows Name","Classification",
+	private static final String[] COMBOOPT = new String[] {"Serial Number","Make","Model","Windows Name","Classification",
 			"Purchase Date","Warranty Date","Building","Room","EDIPI","Last Name","First Name","PARA","LN","Support Level",
 			"Support Description"};
 	private static final String SQLADVSERTXT = "SELECT a.DSerNum,a.Make,a.Model,s.WinName,s.Class,a.PurchaseDate,"
@@ -49,10 +48,23 @@ public class ConnectSQL {
 	private static final String SQLSPTADVSERTXT = " WHERE su.SName LIKE ?;";
 	private static final String SQLDESADVSERTXT = " WHERE su.Desc LIKE ?;";
 	
+	private static void readServerData() {
+		try {
+			BufferedReader br = new BufferedReader(new FileReader (SERVDATFILE));
+			url += br.readLine();
+			username = br.readLine();
+			password = br.readLine();
+			br.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 
 	public static ArrayList<String> searchSQL(int buttonState, String userData) {
 		result =new ArrayList<String>();
 		String search = SQLSEARCHTXT;
+		readServerData();
 		try (Connection con = DriverManager.getConnection(url, username, password)) {
 			PreparedStatement pstmt;
 			if (!userData.isEmpty()) {
@@ -98,6 +110,7 @@ public class ConnectSQL {
 	public static ArrayList<String> advSearchSQL(int buttonState, String userData) {
 		result =new ArrayList<String>();
 		String search = SQLADVSERTXT;
+		readServerData();
 		try (Connection con = DriverManager.getConnection(url, username, password)) {
 			PreparedStatement pstmt;
 			if (!userData.isEmpty()) {
