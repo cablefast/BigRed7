@@ -24,7 +24,7 @@ public class ServerInfo extends JFrame implements ActionListener {
 	private JLabel lblUserName;
 	private JLabel lblPassword;
 	private TextPrompt txtUrlPrompt;
-	private static final String TXTURLPROMPTTEXT = "XXX.XXX.XXX.XXX:XXXX\\server";
+	private static final String TXTURLPROMPTTEXT = "XXX.XXX.XXX.XXX:XXXX/server";
 	
 	public ServerInfo() {
 		super(TITLE);
