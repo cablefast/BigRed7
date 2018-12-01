@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class ConnectSQL {
 	private static final String SERVDATFILE = "servdat.br7";
-	private static String url = "jdbc:mysql://";
+	private static String url;
 	private static String username;
 	private static String password;	
 	private static final String NORESULTSMSG = "No results found";
@@ -49,14 +49,19 @@ public class ConnectSQL {
 	private static final String SQLDESADVSERTXT = " WHERE su.Desc LIKE ?;";
 	
 	private static void readServerData() {
-		try {
-			BufferedReader br = new BufferedReader(new FileReader (SERVDATFILE));
-			url += br.readLine();
-			username = br.readLine();
-			password = br.readLine();
-			br.close();
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (url == null) {
+			url = "jdbc:mysql://";
+			username = "";
+			password = "";
+			try {
+				BufferedReader br = new BufferedReader(new FileReader (SERVDATFILE));
+				url += br.readLine();
+				username = br.readLine();
+				password = br.readLine();
+				br.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -203,9 +208,7 @@ public class ConnectSQL {
 				if (row.length() > 0) row = row.substring(0, row.length()-2);
 				result.add(0, row);
 			}
-			
-			System.out.println(buttonState);
-			System.out.println(search);
+
 			return result;
 
 		}
