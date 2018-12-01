@@ -17,6 +17,7 @@ import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 
 public class AdvancedSearchTab extends JPanel implements ActionListener {
 
@@ -38,10 +39,11 @@ public class AdvancedSearchTab extends JPanel implements ActionListener {
 	private JButton btnColumnsDisplayed;
 	
 	private ColumnSelection select;
+	private JLabel lblSearchBy;
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public AdvancedSearchTab() {
-		setLayout(new MigLayout("", "[grow][grow][grow][grow]", "[grow][][][]"));
+		setLayout(new MigLayout("", "[55][grow][grow][55]", "[grow][][][]"));
 		
 		scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -51,8 +53,11 @@ public class AdvancedSearchTab extends JPanel implements ActionListener {
 		txtaraSearchResults.setEditable(false);
 		scrollPane.setViewportView(txtaraSearchResults);
 		
+		lblSearchBy = new JLabel("Search By:");
+		add(lblSearchBy, "cell 0 1");
+		
 		cmbUserSearchFieldSelection = new JComboBox(COMBOOPT);
-		add(cmbUserSearchFieldSelection, "cell 0 1 2 1,grow");		
+		add(cmbUserSearchFieldSelection, "cell 1 1,grow");		
 		
 		btnColumnsDisplayed = new JButton("Columns Displayed");
 		btnColumnsDisplayed.addActionListener(this);	

@@ -33,13 +33,15 @@ public class SearchTab extends JPanel implements ActionListener{
 	private JFileChooser fc;
 	private final ButtonGroup buttonGroupSearchTypes = new ButtonGroup();
 	private static ArrayList<String> result=new ArrayList<String>();
+	private ServerInfo serverInfo;
+	private JButton btnServer;
 
 	public SearchTab() {
-		setLayout(new MigLayout("", "[grow][grow][grow][grow]", "[grow][][][]"));
+		setLayout(new MigLayout("", "[grow][grow][grow][grow][grow]", "[grow][][][]"));
 		
 		scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		add(scrollPane, "cell 0 0 4 1,grow");
+		add(scrollPane, "cell 0 0 5 1,grow");
 		
 		txtaraSearchResults = new JTextArea();
 		txtaraSearchResults.setEditable(false);
@@ -52,26 +54,33 @@ public class SearchTab extends JPanel implements ActionListener{
 		
 		tglbtnByUserName = new JToggleButton("User Name");
 		buttonGroupSearchTypes.add(tglbtnByUserName);
-		add(tglbtnByUserName, "cell 1 1 2 1,grow");
+		add(tglbtnByUserName, "cell 1 1 3 1,grow");
 		
 		tglbtnByBldg = new JToggleButton("Bldg Nbr");
 		buttonGroupSearchTypes.add(tglbtnByBldg);
-		add(tglbtnByBldg, "cell 3 1,grow");
+		add(tglbtnByBldg, "cell 4 1,grow");
 		
 		txtfldUserSearchParam = new JTextField();
 		txtfldUserSearchParam.addActionListener(this);
-		add(txtfldUserSearchParam, "cell 1 2 2 1,grow");
+		add(txtfldUserSearchParam, "cell 1 2 3 1,grow");
 		
 		txtfldPrompt = new TextPrompt(searchFieldPromptText, txtfldUserSearchParam, TextPrompt.Show.FOCUS_LOST);
 		txtfldPrompt.changeStyle(Font.ITALIC);
+		
+		btnExport = new JButton("Export");
+		btnExport.addActionListener(this);
+		add(btnExport, "cell 3 3,grow");
 		
 		btnClear = new JButton("Clear");
 		btnClear.addActionListener(this);
 		add(btnClear, "cell 1 3,grow");
 		
-		btnExport = new JButton("Export");
-		btnExport.addActionListener(this);
-		add(btnExport, "cell 2 3,grow");
+		btnServer = new JButton("Server");
+		add(btnServer, "cell 2 3,grow");
+		btnServer.addActionListener(this);			
+		
+		serverInfo = new ServerInfo();
+		serverInfo.setVisible(false);
 	}
 	
 	private int getButtonState() {
@@ -130,13 +139,16 @@ public class SearchTab extends JPanel implements ActionListener{
 			else txtaraSearchResults.append("Save command cancelled by user." + "\n");
 		}
 		
-		else if (e.getSource() == btnClear)	txtaraSearchResults.setText(null);
+		if (e.getSource() == btnClear)	txtaraSearchResults.setText(null);
 		
-		else if (e.getSource() == txtfldUserSearchParam) {
+		if (e.getSource() == txtfldUserSearchParam) {
 			String userTextToPass = txtfldUserSearchParam.getText();
 			result = ConnectSQL.searchSQL(getButtonState(),userTextToPass);
 			for (int i = 0; i < result.size(); i++) txtaraSearchResults.append(result.get(i) + "\n");
 			result.clear();
+			
 		}
+
+		if (e.getSource() == btnServer) serverInfo.setVisible(true);
 	}
 }
