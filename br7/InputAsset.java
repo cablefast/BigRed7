@@ -95,12 +95,12 @@ public class InputAsset extends JFrame implements ActionListener {
 		
 		btnCancel = new JButton("Cancel");
 		getContentPane().add(btnCancel);
-		
+		btnCancel.addActionListener(this);		
 		
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		
+		if (e.getSource() == btnCancel)	setVisible(false);
 	}
 
 }

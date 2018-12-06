@@ -34,12 +34,13 @@ public class DeleteUser extends JFrame implements ActionListener {
 		getContentPane().add(btnDeleteUser);
 		
 		btnCancel = new JButton("Cancel");
-		getContentPane().add(btnCancel);		
+		getContentPane().add(btnCancel);
+		btnCancel.addActionListener(this);
 		
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		
+		if (e.getSource() == btnCancel)	setVisible(false);
 	}
 
 }
