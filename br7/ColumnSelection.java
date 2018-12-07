@@ -9,18 +9,125 @@ import javax.swing.BoxLayout;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 
+/**
+ * @author      Matthew Flautt <mf56@students.uwf.edu>
+ * @version     1.0
+ * @since       1.0
+ */
 public class ColumnSelection extends JFrame implements ActionListener {
 	
+	/**
+	 * a default serial version ID to the selected type.
+	 */
 	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * The title of the frame
+	 */
 	private static final String TITLE = "Select Column(s)";
-	private static JCheckBox chckbxSerNum, chckbxMake, chckbxModel, chckbxWinName, chckbxClass, 
-	chckbxPurchase, chckbxWarranty, chckbxBldg, chckbxRm, chckbxEDIPI, chckbxLast, chckbxFirst, 
-	chckbxPara, chckbxLn, chckbxSpt, chckbxSptDec;
+	
+	/**
+	 * Checkbox that display's the serial number column in the results
+	 */
+	private static JCheckBox chckbxSerNum;
+	
+	/**
+	 * Checkbox that display's the make column in the results
+	 */
+	private static JCheckBox chckbxMake;
+	
+	/**
+	 * Checkbox that display's the model column in the results
+	 */
+	private static JCheckBox chckbxModel;
+	
+	/**
+	 * Checkbox that display's the windows name column in the results
+	 */
+	private static JCheckBox chckbxWinName;
+	
+	/**
+	 * Checkbox that display's the classification column in the results
+	 */
+	private static JCheckBox chckbxClass;
+	
+	/**
+	 * Checkbox that display's the purchase date column in the results
+	 */
+	private static JCheckBox chckbxPurchase;
+	
+	/**
+	 * Checkbox that display's the warranty end date column in the results
+	 */
+	private static JCheckBox chckbxWarranty;
+	
+	/**
+	 * Checkbox that display's the building number column in the results
+	 */
+	private static JCheckBox chckbxBldg;
+	
+	/**
+	 * Checkbox that display's the room number column in the results
+	 */
+	private static JCheckBox chckbxRm;
+	
+	/**
+	 * Checkbox that display's the EDIPI column in the results
+	 */
+	private static JCheckBox chckbxEDIPI;
+	
+	/**
+	 * Checkbox that display's the last name column in the results
+	 */
+	private static JCheckBox chckbxLast;
+	
+	/**
+	 * Checkbox that display's the first name column in the results
+	 */
+	private static JCheckBox chckbxFirst;
+	
+	/**
+	 * Checkbox that display's the paragraph number column in the results
+	 */
+	private static JCheckBox chckbxPara;
+	
+	/**
+	 * Checkbox that display's the line number column in the results
+	 */
+	private static JCheckBox chckbxLn;
+	
+	/**
+	 * Checkbox that display's the support column in the results
+	 */
+	private static JCheckBox chckbxSpt;
+	
+	/**
+	 * Checkbox that display's the support description column in the results
+	 */
+	private static JCheckBox chckbxSptDec;
+	
+	/**
+	 * Array that holds the names for different checkboxes
+	 */
 	private static final String[] COMBOOPT = new String[] {"Serial Number","Make","Model","Windows Name","Classification",
 			"Purchase Date","Warranty Date","Building","Room","EDIPI","Last Name","First Name","PARA","LN","Support Level",
 			"Support Description"};
-	private JButton btnSelectAll, btnUnselectAll;
 	
+	/**
+	 * Button that selects all of the checkboxes
+	 */
+	private JButton btnSelectAll;
+	
+	/**
+	 * Button that unselects all of the checkboxes
+	 */
+	private JButton btnUnselectAll;
+	
+	/**
+	 * Constructor of this class
+	 * 
+	 * Box layout used. Visible items added to panel
+	 */
 	public ColumnSelection() {
 		super(TITLE);
 		setSize(new Dimension(165, 490));
@@ -103,71 +210,189 @@ public class ColumnSelection extends JFrame implements ActionListener {
 
 	}
 	
-	   public static boolean getSerNumState() {
+	/**
+	 * Get serial number checkbox state
+	 * 
+	 * gets the checkbox state for external classes
+	 *
+	 * @return boolean value of checkbox state
+	 */
+	public static boolean getSerNumState() {
 		      return chckbxSerNum.isSelected();
 		   }
-	   
-	   public static boolean getMakeState() {
+	/**
+	 * Get make checkbox state
+	 * 
+	 * gets the checkbox state for external classes
+	 *
+	 * @return boolean value of checkbox state
+	 */
+	public static boolean getMakeState() {
 		      return chckbxMake.isSelected();
 		   }
-	   
-	   public static boolean getModelState() {
+	
+	/**
+	 * Get model checkbox state
+	 * 
+	 * gets the checkbox state for external classes
+	 *
+	 * @return boolean value of checkbox state
+	 */
+	public static boolean getModelState() {
 		      return chckbxModel.isSelected();
 		   }
-	   
-	   public static boolean getWinNameState() {
+	
+	/**
+	 * Get windows name checkbox state
+	 * 
+	 * gets the checkbox state for external classes
+	 *
+	 * @return boolean value of checkbox state
+	 */
+	public static boolean getWinNameState() {
 		      return chckbxWinName.isSelected();
 		   }
-	   
-	   public static boolean getClassState() {
+
+	/**
+	 * Get classification checkbox state
+	 * 
+	 * gets the checkbox state for external classes
+	 *
+	 * @return boolean value of checkbox state
+	 */
+	public static boolean getClassState() {
 		      return chckbxClass.isSelected();
 		   }
-	   
-	   public static boolean getPurchaseState() {
+
+	/**
+	 * Get purchase date checkbox state
+	 * 
+	 * gets the checkbox state for external classes
+	 *
+	 * @return boolean value of checkbox state
+	 */
+	public static boolean getPurchaseState() {
 		      return chckbxPurchase.isSelected();
 		   }
-	   
-	   public static boolean getWarrantyState() {
+
+	/**
+	 * Get warranty date checkbox state
+	 * 
+	 * gets the checkbox state for external classes
+	 *
+	 * @return boolean value of checkbox state
+	 */
+	public static boolean getWarrantyState() {
 		      return chckbxWarranty.isSelected();
 		   }
-	   
-	   public static boolean getBldgState() {
+
+	/**
+	 * Get building number checkbox state
+	 * 
+	 * gets the checkbox state for external classes
+	 *
+	 * @return boolean value of checkbox state
+	 */
+	public static boolean getBldgState() {
 		      return chckbxBldg.isSelected();
 		   }
-	   
-	   public static boolean getRmState() {
+
+	/**
+	 * Get room number checkbox state
+	 * 
+	 * gets the checkbox state for external classes
+	 *
+	 * @return boolean value of checkbox state
+	 */
+	public static boolean getRmState() {
 		      return chckbxRm.isSelected();
 		   }
-	   
-	   public static boolean getEDIPIState() {
+
+	/**
+	 * Get EDIPI checkbox state
+	 * 
+	 * gets the checkbox state for external classes
+	 *
+	 * @return boolean value of checkbox state
+	 */
+	public static boolean getEDIPIState() {
 		      return chckbxEDIPI.isSelected();
 		   }
-	   
-	   public static boolean getLastState() {
+
+	/**
+	 * Get last name checkbox state
+	 * 
+	 * gets the checkbox state for external classes
+	 *
+	 * @return boolean value of checkbox state
+	 */
+	public static boolean getLastState() {
 		      return chckbxLast.isSelected();
 		   }
-	   
-	   public static boolean getFirstState() {
+
+	/**
+	 * Get first name checkbox state
+	 * 
+	 * gets the checkbox state for external classes
+	 *
+	 * @return boolean value of checkbox state
+	 */
+	public static boolean getFirstState() {
 		      return chckbxFirst.isSelected();
 		   }
-	   
-	   public static boolean getParaState() {
+
+	/**
+	 * Get paragraph number checkbox state
+	 * 
+	 * gets the checkbox state for external classes
+	 *
+	 * @return boolean value of checkbox state
+	 */
+	public static boolean getParaState() {
 		      return chckbxPara.isSelected();
 		   }
-	   
-	   public static boolean getLnState() {
+
+	/**
+	 * Get line number checkbox state
+	 * 
+	 * gets the checkbox state for external classes
+	 *
+	 * @return boolean value of checkbox state
+	 */
+	public static boolean getLnState() {
 		      return chckbxLn.isSelected();
 		   }
-	   
-	   public static boolean getSptState() {
+	
+	/**
+	 * Get support checkbox state
+	 * 
+	 * gets the checkbox state for external classes
+	 *
+	 * @return boolean value of checkbox state
+	 */
+	public static boolean getSptState() {
 		      return chckbxSpt.isSelected();
 		   }
-	   
-	   public static boolean getSptDecState() {
+
+	/**
+	 * Get support description checkbox state
+	 * 
+	 * gets the checkbox state for external classes
+	 *
+	 * @return boolean value of checkbox state
+	 */
+	public static boolean getSptDecState() {
 		      return chckbxSptDec.isSelected();
 		   }
-	   
-		public void actionPerformed(ActionEvent e) {
+
+	/**
+	 * Decides what to do when a user selects an action
+	 * 
+	 * Sets all of the checkboxes to selected or unselected
+	 *
+	 * @param user started action event
+	 */
+	public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == btnSelectAll) {
 				chckbxSerNum.setSelected(true);
 				chckbxMake.setSelected(true);

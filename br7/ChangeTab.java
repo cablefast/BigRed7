@@ -5,27 +5,103 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * @author      Matthew Flautt <mf56@students.uwf.edu>
+ * @version     1.0
+ * @since       1.0
+ */
 public class ChangeTab extends JPanel implements ActionListener {
 
+	/**
+	 * a default serial version ID to the selected type.
+	 */
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * Button that sets the new asset frame to visible
+	 */
 	private JButton btnNewAsset;
+	
+	/**
+	 * Button that sets the new user frame to visible
+	 */
 	private JButton btnNewUser;
+	
+	/**
+	 * Button that sets the assign asset frame to visible
+	 */
 	private JButton btnAssignAsset;
+	
+	/**
+	 * Button that sets the unassign asset frame to visible
+	 */
 	private JButton btnUnassignAsset;
+	
+	/**
+	 * Button that sets the update asset frame to visible
+	 */
 	private JButton btnUpdateAsset;
+	
+	/**
+	 * Button that sets the delete asset frame to visible
+	 */
 	private JButton btnDeleteAsset;
+	
+	/**
+	 * Button that sets the update user frame to visible
+	 */
 	private JButton btnUpdateUser;
+	
+	/**
+	 * Button that sets the delete user frame to visible
+	 */
 	private JButton btnDeleteUser;
+	
+	/**
+	 * Input asset frame
+	 */
 	private InputAsset inputAsset;
+	
+	/**
+	 * Input user frame
+	 */
 	private InputUser inputUser;
+	
+	/**
+	 * Assign asset frame
+	 */
 	private AssignAsset assignAsset;
+	
+	/**
+	 * Unassign asset frame
+	 */
 	private UnassignAsset unassignAsset;
+	
+	/**
+	 * Update asset frame
+	 */
 	private UpdateAsset updateAsset;
+	
+	/**
+	 * Delete asset frame
+	 */
 	private DeleteAsset deleteAsset;
+	
+	/**
+	 * Update user frame
+	 */
 	private UpdateUser updateUser;
+	
+	/**
+	 * Delete user frame
+	 */
 	private DeleteUser deleteUser;
 
+	/**
+	 * Constructor of this class
+	 * 
+	 * MIG layout used. Visible items added to panel
+	 */
 	public ChangeTab() {
 		setLayout(new MigLayout("", "[grow][][grow]", "[grow][][grow][][grow][][grow]"));
 		
@@ -87,6 +163,13 @@ public class ChangeTab extends JPanel implements ActionListener {
 
 	}
 	
+	/**
+	 * Decides what to do when a user selects an action
+	 * 
+	 * Sets one of the eight frames visible when the corresponding button is pressed
+	 *
+	 * @param user started action event
+	 */
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnNewAsset) inputAsset.setVisible(true);
 		if (e.getSource() == btnNewUser) inputUser.setVisible(true);
